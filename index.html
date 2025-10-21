@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sehat Jiwa Remaja - Layanan Konseling Kesehatan Mental</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #4CAF50;
+            --accent-color: #FF6B9D;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --success-color: #28a745;
+            --whatsapp-color: #25D366;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f5f7fa;
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        nav .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        nav .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,197.3C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--whatsapp-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: #20ba5a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--light-color);
+            transform: translateY(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section {
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        
+        /* Counselor Profile */
+        .counselor-profile {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .profile-header {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .profile-info h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .profile-info .title {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .profile-info .credentials {
+            background: var(--light-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .profile-info .credentials p {
+            margin: 5px 0;
+            color: #555;
+        }
+        
+        .profile-description {
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        
+        .profile-specialties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .specialty-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .service-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+        
+        .service-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        /* Why Choose Us */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .contact-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .faq-question {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 25px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Emergency Box */
+        .emergency-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(238, 90, 111, 0.3);
+        }
+        
+        .emergency-box h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .emergency-box p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .emergency-numbers {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin: 10px 0;
+        }
+        
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+        
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--whatsapp-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+            text-decoration: none;
+        }
+        
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .profile-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .profile-image {
+                margin: 0 auto;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid,
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">🌈 Sehat Jiwa Remaja</div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#counselor">Counselor</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#contact">Konsultasi</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>💚 Sehat Jiwa Remaja</h1>
+            <p>Ruang Aman untuk Berbagi, Mendengar, dan Tumbuh Bersama</p>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Layanan Konseling Kesehatan Mental untuk Remaja Indonesia</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">📱 Konsultasi Sekarang</a>
+                <a href="#services" class="btn btn-secondary">📋 Lihat Layanan</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counselor Profile -->
+    <section class="section" id="counselor">
+        <div class="container">
+            <h2 class="section-title">👤 Meet Your Counselor</h2>
+            <p class="section-subtitle">Profesional yang Peduli dengan Kesehatan Mental Anda</p>
+            
+            <div class="counselor-profile">
+                <div class="profile-header">
+                    <div class="profile-image">👨‍⚕️</div>
+                    <div class="profile-info">
+                        <h2>Khairi Husnaida</h2>
+                        <p class="title">Mental Health Counselor</p>
+                        <div class="credentials">
+                            <p>📞 <strong>WhatsApp:</strong> 081269113277</p>
+                            <p>✉️ <strong>Available:</strong> Senin - Sabtu, 09.00 - 20.00 WIB</p>
+                            <p>🌐 <strong>Mode:</strong> Online & Offline Consultation</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-description">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">💡 Tentang Saya</h3>
+                    <p>Halo! Saya Khairi Husnaida, seorang counselor yang berdedikasi untuk membantu remaja menemukan keseimbangan mental dan emosional mereka. Saya percaya bahwa setiap remaja memiliki potensi luar biasa, dan terkadang mereka hanya membutuhkan seseorang yang mendengarkan tanpa menghakimi.</p>
+                    
+                    <p style="margin-top: 15px;">Dengan pendekatan yang ramah, empati, dan profesional, saya siap membantu Anda melewati berbagai tantangan yang dihadapi di masa remaja - mulai dari stress sekolah, masalah pertemanan, keluarga, hingga menemukan jati diri.</p>
+                    
+                    <h3 style="color: var(--primary-color); margin: 25px 0 15px;">🎯 Spesialisasi</h3>
+                    <div class="profile-specialties">
+                        <div class="specialty-item">🧠 Anxiety & Stress</div>
+                        <div class="specialty-item">😔 Depression</div>
+                        <div class="specialty-item">👥 Social Issues</div>
+                        <div class="specialty-item">📚 Academic Pressure</div>
+                        <div class="specialty-item">💔 Relationship Problems</div>
+                        <div class="specialty-item">🌟 Self-Esteem</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" style="background: white;">
+        <div class="container" id="services">
+            <h2 class="section-title">🎯 Layanan Konseling</h2>
+            <p class="section-subtitle">Berbagai Layanan yang Disesuaikan dengan Kebutuhan Anda</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3>Individual Counseling</h3>
+                    <p>Sesi konseling pribadi one-on-one untuk membahas masalah personal Anda dengan privasi terjamin.</p>
+                    <ul>
+                        <li>Sesi 60 menit</li>
+                        <li>Rahasia terjamin 100%</li>
+                        <li>Jadwal fleksibel</li>
+                        <li>Online via WhatsApp/Video Call</li>
+                        <li>Follow-up gratis via chat</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">😰</div>
+                    <h3>Anxiety & Stress Management</h3>
+                    <p>Bantuan profesional untuk mengelola kecemasan dan stress yang berlebihan.</p>
+                    <ul>
+                        <li>Teknik relaksasi</li>
+                        <li>Breathing exercises</li>
+                        <li>Cognitive behavioral therapy</li>
+                        <li>Mindfulness practice</li>
+                        <li>Coping strategies</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>Academic Counseling</h3>
+                    <p>Membantu mengatasi tekanan akademik dan menemukan motivasi belajar.</p>
+                    <ul>
+                        <li>Manajemen waktu</li>
+                        <li>Study motivation</li>
+                        <li>Exam anxiety</li>
+                        <li>Goal setting</li>
+                        <li>Performance improvement</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">👨‍👩‍👧</div>
+                    <h3>Family Issues</h3>
+                    <p>Konseling untuk masalah komunikasi dan hubungan dengan keluarga.</p>
+                    <ul>
+                        <li>Parent-teen conflict</li>
+                        <li>Communication skills</li>
+                        <li>Boundary setting</li>
+                        <li>Family dynamics</li>
+                        <li>Mediasi keluarga</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💔</div>
+                    <h3>Relationship Counseling</h3>
+                    <p>Membantu mengatasi masalah pertemanan dan hubungan interpersonal.</p>
+                    <ul>
+                        <li>Friendship problems</li>
+                        <li>Romantic relationships</li>
+                        <li>Bullying issues</li>
+                        <li>Social skills</li>
+                        <li>Conflict resolution</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🌟</div>
+                    <h3>Self-Development</h3>
+                    <p>Pengembangan diri untuk meningkatkan kepercayaan diri dan potensi.</p>
+                    <ul>
+                        <li>Self-esteem building</li>
+                        <li>Identity exploration</li>
+                        <li>Life goals planning</li>
+                        <li>Passion discovery</li>
+                        <li>Personal growth</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">✨ Mengapa Memilih Kami?</h2>
+            <p class="section-subtitle">Komitmen Kami untuk Kesehatan Mental Anda</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>100% Rahasia</h3>
+                    <p>Semua informasi dan percakapan Anda dijaga kerahasiaannya dengan ketat</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👂</div>
+                    <h3>No Judgment Zone</h3>
+                    <p>Ruang aman tanpa penilaian untuk berbagi cerita dan perasaan Anda</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💚</div>
+                    <h3>Empati & Profesional</h3>
+                    <p>Pendekatan yang penuh empati dengan standar profesional</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Akses Mudah</h3>
+                    <p>Konsultasi via WhatsApp, chat, atau video call sesuai kenyamanan Anda</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Jadwal Fleksibel</h3>
+                    <p>Waktu konsultasi yang bisa disesuaikan dengan aktivitas Anda</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>24/7 Emergency Support</h3>
+                    <p>Dukungan darurat tersedia untuk situasi kritis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">💬 Testimoni</h2>
+            <p class="section-subtitle">Apa Kata Mereka yang Telah Berkonsultasi</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Awalnya ragu, tapi setelah konsultasi dengan Kak Khairi, saya merasa jauh lebih lega. Beliau sangat mengerti dan tidak menghakimi sama sekali. Terima kasih banyak!</p>
+                    <p class="testimonial-author">Sarah, 17 tahun</p>
+                    <p class="testimonial-role">Siswa SMA</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Saya yang biasanya susah terbuka, bisa nyaman cerita tentang masalah saya. Kak Khairi memberikan solusi yang praktis dan mudah dipahami. Recommended!</p>
+                    <p class="testimonial-author">Rizky, 16 tahun</p>
+                    <p class="testimonial-role">Siswa SMA</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Konseling online-nya sangat membantu karena saya bisa konsultasi dari rumah. Privacy terjaga dan responsnya cepat. Great service!</p>
+                    <p class="testimonial-author">Dinda, 18 tahun</p>
+                    <p class="testimonial-role">Mahasiswa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">❓ Frequently Asked Questions</h2>
+            <p class="section-subtitle">Pertanyaan yang Sering Diajukan</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Bagaimana cara memulai konsultasi?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sangat mudah! Cukup hubungi nomor WhatsApp 081269113277, sampaikan bahwa Anda ingin konsultasi, dan kami akan membantu mengatur jadwal yang sesuai untuk Anda.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Apakah konsultasi benar-benar rahasia?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Ya, 100% rahasia. Semua informasi yang Anda bagikan dilindungi oleh kode etik konseling dan tidak akan dibagikan kepada siapapun tanpa izin Anda, kecuali jika ada risiko bahaya terhadap diri sendiri atau orang lain.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Berapa lama satu sesi konseling?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Satu sesi konseling biasanya berlangsung 45-60 menit. Namun, durasi bisa disesuaikan dengan kebutuhan dan kondisi Anda.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Apakah bisa konsultasi via chat saja?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Tentu! Kami menyediakan berbagai metode konsultasi: chat WhatsApp, voice call, atau video call. Anda bisa memilih yang paling nyaman untuk Anda.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Bagaimana jika saya butuh bantuan darurat?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Untuk situasi darurat, Anda bisa langsung hubungi WhatsApp 081269113277. Kami juga menyediakan support darurat. Jika mengancam nyawa, segera hubungi hotline crisis: 119 ext 8 atau emergency services terdekat.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Box -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="emergency-box">
+                <h3>🆘 Dalam Keadaan Darurat?</h3>
+                <p>Jika Anda atau seseorang yang Anda kenal dalam krisis atau bahaya:</p>
+                <div class="emergency-numbers">
+                    <p><strong>📞 Hotline Darurat 24/7:</strong></p>
+                    <p>• Sejiwa (Kesehatan Jiwa): 119 ext. 8</p>
+                    <p>• LSM Jangan Bunuh Diri: 021-9696 9293</p>
+                    <p>• WhatsApp Crisis: 0858-7678-6788</p>
+                    <p style="margin-top: 15px;"><strong>Atau hubungi kami:</strong></p>
+                    <p><strong>📱 081269113277 (Khairi Husnaida)</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-section">
+                <h2 style="font-size: 2.5rem; margin-bottom: 15px;">📞 Siap untuk Memulai?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 20px;">Langkah pertama menuju kesehatan mental yang lebih baik dimulai dari sini</p>
+                <p>Jangan ragu untuk menghubungi kami. Tidak ada masalah yang terlalu kecil atau terlalu besar untuk dibicarakan.</p>
+                
+                <div class="contact-methods">
+                    <div class="contact-card">
+                        <h3>💬 Via WhatsApp</h3>
+                        <p><strong>081269113277</strong></p>
+                        <a href="https://wa.me/6281269113277?text=Halo%20Kak%20Khairi,%20saya%20ingin%20konsultasi%20tentang%20kesehatan%20mental" class="btn btn-primary" target="_blank">Chat Sekarang</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>📅 Booking Appointment</h3>
+                        <p>Jadwalkan sesi konseling Anda</p>
+                        <a href="https://wa.me/6281269113277?text=Halo%20Kak%20Khairi,%20saya%20ingin%20booking%20sesi%20konseling" class="btn btn-secondary" target="_blank">Buat Jadwal</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>❓ Tanya Jawab</h3>
+                        <p>Punya pertanyaan? Tanya saja!</p>
+                        <a href="https://wa.me/6281269113277?text=Halo%20Kak%20Khairi,%20saya%20punya%20pertanyaan" class="btn btn-primary" target="_blank">Tanya Sekarang</a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 25px; background: rgba(255,255,255,0.2); border-radius: 15px;">
+                    <h3 style="margin-bottom: 15px;">⏰ Jam Operasional</h3>
+                    <p><strong>Senin - Jumat:</strong> 09.00 - 20.00 WIB</p>
+                    <p><strong>Sabtu:</strong> 10.00 - 18.00 WIB</p>
+                    <p><strong>Minggu:</strong> By Appointment</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">*Emergency support available 24/7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🌈 Sehat Jiwa Remaja</h3>
+                <p style="color: #bbb; line-height: 1.8;">Layanan konseling kesehatan mental profesional untuk remaja Indonesia. Bersama menciptakan generasi yang sehat mental dan bahagia.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Layanan</h3>
+                <ul>
+                    <li>Individual Counseling</li>
+                    <li>Anxiety & Stress Management</li>
+                    <li>Academic Counseling</li>
+                    <li>Relationship Issues</li>
+                    <li>Self-Development</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <ul>
+                    <li>📱 WhatsApp: 081269113277</li>
+                    <li>👤 Counselor: Khairi Husnaida</li>
+                    <li>⏰ Sen-Sab: 09.00-20.00 WIB</li>
+                    <li>🌐 Online & Offline</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Dukungan</h3>
+                <ul>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li>Hotline Darurat: 119 ext 8</li>
+                    <li>Privacy Policy</li>
+                    <li>Terms of Service</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sehat Jiwa Remaja | Counselor: Khairi Husnaida</p>
+            <p style="margin-top: 10px; color: #999;">💚 Your Mental Health Matters 💚</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281269113277?text=Halo%20Kak%20Khairi,%20saya%20ingin%20konsultasi" class="floating-whatsapp" target="_blank" title="Chat via WhatsApp">
+        📱
+    </a>
+
+</body>
+</html>
